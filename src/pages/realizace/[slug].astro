@@ -1,0 +1,239 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/blocks/Navbar.astro";
+import Container from "../../components/ui/Container.astro";
+import Footer from "../../components/blocks/Footer.astro";
+import fs from "fs";
+import path from "path";
+
+export function getStaticPaths() {
+  // 1. Define the data INSIDE getStaticPaths so it is guaranteed to exist
+  const projectData = {
+    "rodinny-dum-1": {
+      title: "Rodinný dům - Kompletní realizace",
+      description:
+        "Moderní rodinný dům postavený s důrazem na kvalitu a detail. Kompletní realizace od základů po střechu.",
+      folder: "dum1",
+    },
+    "rodinny-dum-2": {
+      title: "Rodinný dům - přestavba",
+      description:
+        "Kompletní rekonstrukce a modernizace rodinného domu s novými interiéry a fasádou.",
+      folder: "dum2",
+    },
+    "rodinny-dum-3": {
+      title: "Rodinný dům s moderním designem",
+      description:
+        "Novostavba rodinného domu s moderními architektonickými prvky a funkčním uspořádáním.",
+      folder: "dum3",
+    },
+    "rodinny-dum-4": {
+      title: "Rodinný dům - kompletní interiér",
+      description:
+        "Realizace rodinného domu včetně kompletních interiérových prací a finálních úprav.",
+      folder: "dum4",
+    },
+    "rodinny-dum-5": {
+      title: "Rodinný dům s interiérem",
+      description:
+        "Kompletní realizace rodinného domu včetně moderních interiérů a finálních úprav.",
+      folder: "dum5",
+    },
+    "rodinny-dum-6": {
+      title: "Rodinný dům s moderní architekturou",
+      description:
+        "Stavba rodinného domu s moderními prvky a funkčním uspořádáním. Realizace podle požadavků klienta.",
+      folder: "dum6",
+    },
+    "bytova-jednotka-1": {
+      title: "Bytová jednotka - moderní bydlení",
+      description:
+        "Realizace moderní bytové jednotky s důrazem na funkčnost a estetiku prostoru.",
+      folder: "byt1",
+    },
+    "bytova-jednotka-2": {
+      title: "Bytová jednotka - elegantní interiér",
+      description:
+        "Moderní bytová jednotka s elegantními interiéry a kvalitními materiály.",
+      folder: "byt2",
+    },
+    "bytova-jednotka-3": {
+      title: "Bytová jednotka - kompletní rekonstrukce",
+      description:
+        "Kompletní rekonstrukce bytové jednotky s novým dispozičním řešením a moderním vybavením.",
+      folder: "byt3",
+    },
+  };
+
+  return Object.keys(projectData).map((slug) => ({
+    params: { slug },
+    // 2. Pass the specific project data as a prop
+    props: { project: projectData[slug] },
+  }));
+}
+
+// 3. Receive the project data from Props (instead of looking it up again)
+const { slug } = Astro.params;
+const { project } = Astro.props;
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+// Get all images from the project folder
+const imagesFolder = path.join(
+  process.cwd(),
+  "public",
+  "images-work",
+  "skyinvest_images",
+  project.folder,
+);
+let images: string[] = [];
+
+try {
+  if (fs.existsSync(imagesFolder)) {
+    const files = fs.readdirSync(imagesFolder);
+    images = files
+      .filter((file) => /\.(jpg|jpeg|png|JPG|JPEG|PNG)$/i.test(file))
+      .map((file) => `/images-work/skyinvest_images/${project.folder}/${file}`);
+  }
+} catch (error) {
+  console.error("Error reading images folder:", error);
+}
+
+// Pagination
+const page = parseInt(Astro.url.searchParams.get("page") || "1");
+const imagesPerPage = 12;
+const totalPages = Math.ceil(images.length / imagesPerPage);
+const startIndex = (page - 1) * imagesPerPage;
+const endIndex = startIndex + imagesPerPage;
+const paginatedImages = images.slice(startIndex, endIndex);
+---
+
+<Layout
+  title={`${project.title} - Realizace`}
+  description={project.description}
+>
+  <Navbar />
+  <main>
+    <!-- Hero Section -->
+    <section
+      class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew"
+    >
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <a
+            href="/realizace"
+            class="inline-flex items-center gap-2 text-frosted-blue hover:text-honeydew transition-colors mb-6"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m15 18-6-6 6-6"></path>
+            </svg>
+            Zpět na realizace
+          </a>
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up"
+          >
+            {project.title}
+          </h1>
+          <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
+            {project.description}
+          </p>
+          <p class="mt-4 text-sm text-frosted-blue/80">
+            {images.length}
+            {
+              images.length === 1
+                ? "fotografie"
+                : images.length < 5
+                  ? "fotografie"
+                  : "fotografií"
+            }
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-20">
+      <Container>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            paginatedImages.map((image, index) => (
+              <div
+                class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-oxford-navy/10 animate-fade-in-up"
+                style={`animation-delay: ${index * 50}ms`}
+              >
+                <img
+                  src={image}
+                  alt={`${project.title} - fotografie ${startIndex + index + 1}`}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-oxford-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="absolute bottom-4 left-4 right-4 text-honeydew">
+                    <p class="text-sm font-medium">
+                      Fotografie {startIndex + index + 1}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Pagination -->
+        {
+          totalPages > 1 && (
+            <div class="mt-12 flex justify-center items-center gap-2">
+              {page > 1 && (
+                <a
+                  href={`/realizace/${slug}?page=${page - 1}`}
+                  class="px-4 py-2 rounded-lg bg-oxford-navy text-honeydew hover:bg-cerulean transition-colors"
+                >
+                  Předchozí
+                </a>
+              )}
+
+              <div class="flex gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (pageNum) => (
+                    <a
+                      href={`/realizace/${slug}?page=${pageNum}`}
+                      class={`px-4 py-2 rounded-lg transition-colors ${
+                        pageNum === page
+                          ? "bg-cerulean text-honeydew"
+                          : "bg-oxford-navy/10 text-oxford-navy hover:bg-oxford-navy/20"
+                      }`}
+                    >
+                      {pageNum}
+                    </a>
+                  ),
+                )}
+              </div>
+
+              {page < totalPages && (
+                <a
+                  href={`/realizace/${slug}?page=${page + 1}`}
+                  class="px-4 py-2 rounded-lg bg-oxford-navy text-honeydew hover:bg-cerulean transition-colors"
+                >
+                  Další
+                </a>
+              )}
+            </div>
+          )
+        }
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</Layout>

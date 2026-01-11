@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/blocks/Navbar.astro';
+import Container from '../components/ui/Container.astro';
+import Footer from '../components/blocks/Footer.astro';
+---
+
+<Layout title="O nás - Stavební firma" description="Seznamte se s naší stavební firmou, našimi hodnotami a týmem profesionálů.">
+  <Navbar />
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew">
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
+            O naší firmě
+          </h1>
+          <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
+            Stavíme s tradicí a moderním přístupem již více než 20 let
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Company Story -->
+    <section class="py-20">
+      <Container>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Naše historie</h2>
+            <div class="space-y-4 text-muted-foreground">
+              <p>
+                Naše stavební firma byla založena v roce 2003 s vizí poskytovat kvalitní 
+                stavební služby s důrazem na preciznost, spolehlivost a spokojenost zákazníků.
+              </p>
+              <p>
+                Za více než 20 let působení na trhu jsme realizovali stovky projektů - 
+                od rodinných domů přes bytové domy až po komerční objekty. Každý projekt 
+                je pro nás jedinečný a přistupujeme k němu s maximální péčí.
+              </p>
+              <p>
+                Naším cílem je nejen stavět kvalitní budovy, ale také budovat dlouhodobé 
+                vztahy s našimi klienty založené na důvěře a profesionalitě.
+              </p>
+            </div>
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80" 
+              alt="Stavební tým"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 bg-frosted-blue/10">
+      <Container>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Naše hodnoty</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-background p-8 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Kvalita</h3>
+            <p class="text-muted-foreground">
+              Používáme pouze ověřené materiály a technologie. Každý detail kontrolujeme 
+              s maximální pečlivostí.
+            </p>
+          </div>
+
+          <div class="bg-background p-8 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M12 8v8"></path>
+                <path d="m8 12 4 4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Spolehlivost</h3>
+            <p class="text-muted-foreground">
+              Dodržujeme termíny a rozpočty. Naši klienti se na nás mohou vždy spolehnout.
+            </p>
+          </div>
+
+          <div class="bg-background p-8 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Profesionalita</h3>
+            <p class="text-muted-foreground">
+              Náš tým tvoří zkušení odborníci s dlouholetou praxí v oboru.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Team -->
+    <section class="py-20" id="tym">
+      <Container>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Náš tým</h2>
+        <div class="grid md:grid-cols-4 gap-8">
+          {[
+            { name: 'Ing. Jan Novák', role: 'Jednatel a stavbyvedoucí', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80' },
+            { name: 'Petr Svoboda', role: 'Projektový manažer', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80' },
+            { name: 'Marie Dvořáková', role: 'Hlavní architektka', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80' },
+            { name: 'Tomáš Černý', role: 'Technický ředitel', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80' }
+          ].map(member => (
+            <div class="text-center">
+              <div class="mb-4 rounded-xl overflow-hidden shadow-lg">
+                <img src={member.image} alt={member.name} class="w-full aspect-square object-cover" />
+              </div>
+              <h3 class="font-semibold text-lg">{member.name}</h3>
+              <p class="text-muted-foreground text-sm">{member.role}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</Layout>

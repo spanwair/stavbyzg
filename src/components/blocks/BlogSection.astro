@@ -1,0 +1,100 @@
+---
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+
+const posts = [
+  {
+    id: 'rodinny-dum-praha',
+    title: 'Rodinný dům v Praze - Kompletní realizace',
+    description: 'Moderní rodinný dům s plochou střechou a velkými prosklenými plochami. Realizace od základů po finální úpravy.',
+    author: 'Jan Novák',
+    date: '15. 1. 2024',
+    href: '/realizace/rodinny-dum-praha',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'
+  },
+  {
+    id: 'rekonstrukce-strechy',
+    title: 'Rekonstrukce střechy historického objektu',
+    description: 'Kompletní výměna střešní krytiny s respektováním historického charakteru budovy v centru města.',
+    author: 'Petr Svoboda',
+    date: '12. 1. 2024',
+    href: '/realizace/rekonstrukce-strechy',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'
+  },
+  {
+    id: 'zaklady-novostavby',
+    title: 'Základy pro novostavbu v Brně',
+    description: 'Příprava staveniště a realizace základových konstrukcí pro moderní bytový dům.',
+    author: 'Marie Dvořáková',
+    date: '10. 1. 2024',
+    href: '/realizace/zaklady-novostavby',
+    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80'
+  },
+  {
+    id: 'hruba-stavba',
+    title: 'Hrubá stavba rodinného domu',
+    description: 'Realizace hrubé stavby včetně zdění, stropních konstrukcí a střešního krovu.',
+    author: 'Tomáš Černý',
+    date: '8. 1. 2024',
+    href: '/realizace/hruba-stavba',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80'
+  },
+  {
+    id: 'zatepleni-fasady',
+    title: 'Zateplení a nová fasáda bytového domu',
+    description: 'Kompletní zateplení objektu kontaktním zateplovacím systémem a aplikace moderní omítky.',
+    author: 'Jana Procházková',
+    date: '5. 1. 2024',
+    href: '/realizace/zatepleni-fasady',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80'
+  },
+  {
+    id: 'rekonstrukce-podkrovi',
+    title: 'Rekonstrukce podkroví na obytný prostor',
+    description: 'Přeměna nevyužitého podkroví na moderní obytný prostor s novými střešními okny.',
+    author: 'Martin Kučera',
+    date: '3. 1. 2024',
+    href: '/realizace/rekonstrukce-podkrovi',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80'
+  }
+];
+---
+
+<section class="py-32">
+  <Container>
+    <div class="mb-8 md:mb-14 lg:mb-16">
+      <div class="flex items-start justify-between gap-8">
+        <div>
+          <h2 class="mb-4 w-full text-4xl font-medium md:mb-5 md:text-5xl lg:mb-6 lg:text-6xl">
+            Naše realizace
+          </h2>
+          <p class="text-muted-foreground max-w-2xl">
+            Podívejte se na naše dokončené projekty a přesvědčte se o kvalitě naší práce. 
+            Od základů po střechu - každý detail má svůj význam.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-6 lg:gap-y-12 2xl:grid-cols-3">
+      {posts.map((post) => (
+        <Card
+          title={post.title}
+          description={post.description}
+          image={post.image}
+          href={post.href}
+          author={post.author}
+          date={post.date}
+          class="animate-fade-in-up"
+        />
+      ))}
+    </div>
+
+    <div class="mt-8 flex flex-col items-center py-2 md:mt-12">
+      <Button variant="primary" size="lg" href="/realizace">
+        Zobrazit všechny realizace
+      </Button>
+    </div>
+  </Container>
+</section>

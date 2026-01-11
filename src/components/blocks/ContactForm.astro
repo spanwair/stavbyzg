@@ -1,0 +1,132 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<div class="contact-form-wrapper">
+  <h3 class="text-2xl font-semibold mb-6">Kontaktujte nás</h3>
+  <form id="contact-form" class="space-y-4">
+    <div>
+      <label for="name" class="block text-sm font-medium mb-2">
+        Jméno a příjmení *
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        placeholder="Jan Novák"
+      />
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-medium mb-2">
+        E-mail *
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        placeholder="jan.novak@email.cz"
+      />
+    </div>
+
+    <div>
+      <label for="phone" class="block text-sm font-medium mb-2">
+        Telefon
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        placeholder="+420 123 456 789"
+      />
+    </div>
+
+    <div>
+      <label for="message" class="block text-sm font-medium mb-2">
+        Zpráva *
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        required
+        rows="4"
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all resize-none"
+        placeholder="Popište nám váš projekt..."
+      ></textarea>
+    </div>
+
+    <Button type="submit" variant="primary" size="lg" class="w-full">
+      Odeslat zprávu
+    </Button>
+
+    <div id="form-message" class="hidden text-sm mt-4"></div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const formMessage = document.getElementById('form-message');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!formMessage) return;
+      
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.textContent = 'Odesílání...';
+        submitBtn.setAttribute('disabled', 'true');
+      }
+
+      // Simulate form submission (replace with actual API call)
+      setTimeout(() => {
+        formMessage.classList.remove('hidden');
+        formMessage.classList.add('text-green-600');
+        formMessage.textContent = 'Děkujeme! Vaše zpráva byla úspěšně odeslána. Brzy se vám ozveme.';
+        
+        form.reset();
+        
+        if (submitBtn) {
+          submitBtn.textContent = 'Odeslat zprávu';
+          submitBtn.removeAttribute('disabled');
+        }
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 5000);
+      }, 1000);
+    });
+  }
+</script>
+
+<style>
+  .contact-form-wrapper {
+    background: linear-gradient(135deg, var(--frosted-blue) 0%, var(--cerulean) 100%);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    color: var(--honeydew);
+  }
+
+  .contact-form-wrapper h3 {
+    color: var(--honeydew);
+  }
+
+  .contact-form-wrapper label {
+    color: var(--honeydew);
+  }
+
+  @media (max-width: 768px) {
+    .contact-form-wrapper {
+      padding: 1.5rem;
+    }
+  }
+</style>

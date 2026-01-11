@@ -1,0 +1,160 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  videoSrc?: string;
+  title?: string;
+  subtitle?: string;
+  primaryCta?: string;
+  secondaryCta?: string;
+}
+
+const {
+  videoSrc = "/placeholder-video.mp4",
+  title = "Stavíme vaše sny od základů po střechu",
+  subtitle = "Profesionální stavební firma s tradicí a moderním přístupem",
+  primaryCta = "Nezávazná poptávka",
+  secondaryCta = "Naše služby",
+} = Astro.props;
+---
+
+<section
+  class="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
+>
+  <!-- Video Background with Fallback -->
+  <div class="absolute inset-0 w-full h-full">
+    <!-- Fallback Gradient Background -->
+    <div
+      class="absolute inset-0 w-full h-full bg-gradient-to-br from-oxford-navy via-cerulean to-oxford-navy"
+    >
+    </div>
+
+    <!-- Video (if available) -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover"
+      onloadeddata="this.style.opacity = 1"
+      style="opacity: 0; transition: opacity 0.5s"
+    >
+      <source src="/videos/hero-background.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-gradient-overlay opacity-80"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="container relative z-10">
+    <div class="grid items-center gap-8 lg:grid-cols-2">
+      <!-- Text Content -->
+      <div
+        class="flex flex-col items-center py-32 text-center lg:items-start lg:text-left animate-fade-in-up"
+      >
+        <div class="bg-oxford-navy/50 backdrop-blur-sm rounded-2xl p-8 lg:p-10">
+          <p class="text-frosted-blue font-medium mb-4">
+            Stavební firma v České republice
+          </p>
+          <h1
+            class="my-6 text-4xl font-bold text-pretty lg:text-6xl text-honeydew"
+          >
+            {title}
+          </h1>
+          <p class="mb-8 max-w-xl text-frosted-blue lg:text-xl">
+            {subtitle}
+          </p>
+          <div
+            class="flex w-full flex-col justify-center gap-4 sm:flex-row lg:justify-start"
+          >
+            <Button variant="primary" size="lg" href="/kontakt">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+              {primaryCta}
+            </Button>
+            <Button variant="secondary" size="lg" href="/sluzby">
+              {secondaryCta}
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="relative aspect-[3/4] hidden lg:block">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 800 800"
+            class="h-full w-full text-frosted-blue opacity-10"
+          >
+            <circle r="200" cx="400" cy="400" fill="currentColor" opacity="0.3"
+            ></circle>
+            <circle r="150" cx="400" cy="400" fill="currentColor" opacity="0.5"
+            ></circle>
+            <circle r="100" cx="400" cy="400" fill="currentColor" opacity="0.7"
+            ></circle>
+          </svg>
+        </div>
+        <div
+          class="absolute top-[10%] left-[8%] flex aspect-[5/6] w-[38%] justify-center rounded-lg border border-frosted-blue overflow-hidden backdrop-blur-sm animate-fade-in stagger-1"
+        >
+          <img
+            src="/images-work/skyinvest_images/dum1/IMG_4828-1030x773.jpg"
+            alt="Stavební projekt"
+            class="w-full h-full object-cover opacity-80"
+          />
+        </div>
+        <div
+          class="absolute top-[20%] right-[12%] flex aspect-square w-[20%] justify-center rounded-lg border border-frosted-blue overflow-hidden backdrop-blur-sm animate-fade-in stagger-2"
+        >
+          <img
+            src="/images-work/skyinvest_images/dum1/IMG_4830-1030x773.jpg"
+            alt="Stavební projekt"
+            class="w-full h-full object-cover opacity-80"
+          />
+        </div>
+        <div
+          class="absolute right-[24%] bottom-[24%] flex aspect-[5/6] w-[38%] justify-center rounded-lg border border-frosted-blue overflow-hidden backdrop-blur-sm animate-fade-in stagger-3"
+        >
+          <img
+            src="/images-work/skyinvest_images/dum1/IMG_4832-1030x773.jpg"
+            alt="Stavební projekt"
+            class="w-full h-full object-cover opacity-80"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="w-6 h-6 text-honeydew"
+    >
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,121 @@
+---
+const navLinks = [
+  { name: "Domů", href: "/" },
+  { name: "O nás", href: "/o-nas" },
+  { name: "Služby", href: "/sluzby" },
+  { name: "Realizace", href: "/realizace" },
+  { name: "Kontakt", href: "/kontakt" },
+];
+---
+
+<nav class="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-full max-w-7xl px-6">
+  <div
+    class="rounded-full border border-cerulean/30 bg-oxford-navy/20 backdrop-blur-md shadow-lg"
+    style="background: linear-gradient(135deg, rgba(29, 53, 87, 0.5), rgba(69, 123, 157, 1))"
+  >
+    <div class="flex items-center justify-between px-6 py-3">
+      <!-- Logo -->
+      <a href="/" class="flex shrink-0 items-center gap-2">
+        <div
+          class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl md:hidden"
+        >
+          S-ZG
+        </div>
+        <span class="font-semibold text-lg hidden sm:inline"
+          >Stavby Zapletal – Gabriel</span
+        >
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-2">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-honeydew hover:text-honeydew hover:bg-white/10 transition-all px-4 py-2 rounded-lg"
+            >
+              {link.name}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden relative flex size-8 text-muted-foreground"
+        aria-label="Toggle menu"
+      >
+        <span class="sr-only">Otevřít hlavní menu</span>
+        <div
+          class="absolute top-1/2 left-1/2 block w-[18px] -translate-x-1/2 -translate-y-1/2"
+        >
+          <span
+            class="menu-line absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out -translate-y-1.5"
+          ></span>
+          <span
+            class="menu-line absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out"
+          ></span>
+          <span
+            class="menu-line absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out translate-y-1.5"
+          ></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0"
+    >
+      <nav class="flex flex-col divide-y divide-white/10 px-6 pb-4">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="py-4 text-base font-medium text-honeydew hover:text-honeydew/80 transition-colors"
+            >
+              {link.name}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.contains("max-h-0");
+
+      if (isOpen) {
+        mobileMenu.classList.remove("max-h-0", "opacity-0");
+        mobileMenu.classList.add("max-h-96", "opacity-100");
+        menuButton.classList.add("menu-open");
+      } else {
+        mobileMenu.classList.add("max-h-0", "opacity-0");
+        mobileMenu.classList.remove("max-h-96", "opacity-100");
+        menuButton.classList.remove("menu-open");
+      }
+    });
+  }
+</script>
+
+<style>
+  .menu-open .menu-line:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .menu-open .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-open .menu-line:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
+  }
+</style>

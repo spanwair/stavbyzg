@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  author?: string;
+  date?: string;
+  class?: string;
+}
+
+const { 
+  title, 
+  description, 
+  image, 
+  href,
+  author,
+  date,
+  class: className = '' 
+} = Astro.props;
+---
+
+<a href={href} class={`group flex flex-col ${className}`}>
+  <div class="mb-4 flex overflow-clip rounded-xl md:mb-5">
+    <div class="transition-opacity duration-300 group-hover:opacity-80">
+      <img
+        src={image}
+        alt={title}
+        class="aspect-[3/2] h-full w-full object-cover object-center"
+      />
+    </div>
+  </div>
+
+  {(author || date) && (
+    <div class="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
+      {author && <span class="font-medium">{author}</span>}
+      {author && date && <span>•</span>}
+      {date && <span>{date}</span>}
+    </div>
+  )}
+
+  <h2 class="mb-2 line-clamp-3 text-lg font-medium break-words md:mb-3 md:text-2xl">
+    {title}
+  </h2>
+  <div class="line-clamp-2 text-sm text-muted-foreground md:text-base">
+    {description}
+  </div>
+</a>

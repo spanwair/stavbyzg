@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/blocks/Navbar.astro';
+import Container from '../components/ui/Container.astro';
+import ContactForm from '../components/blocks/ContactForm.astro';
+import Footer from '../components/blocks/Footer.astro';
+---
+
+<Layout title="Kontakt - Stavební firma" description="Kontaktujte nás pro nezávaznou konzultaci a cenovou nabídku. Jsme tu pro vás.">
+  <Navbar />
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew">
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
+            Kontaktujte nás
+          </h1>
+          <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
+            Rádi vám pomůžeme s vaším stavebním projektem
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20">
+      <Container>
+        <div class="grid lg:grid-cols-2 gap-12">
+          <!-- Contact Information -->
+          <div class="space-y-8">
+            <div>
+              <h2 class="text-3xl font-bold mb-6">Kde nás najdete</h2>
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-1">Adresa</h3>
+                    <p class="text-muted-foreground">
+                      Stavební firma s.r.o.<br />
+                      Pražská 123<br />
+                      110 00 Praha 1<br />
+                      Česká republika
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-1">Telefon</h3>
+                    <p class="text-muted-foreground">
+                      +420 123 456 789<br />
+                      +420 987 654 321
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-1">E-mail</h3>
+                    <p class="text-muted-foreground">
+                      info@stavebni-firma.cz<br />
+                      obchod@stavebni-firma.cz
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-1">Pracovní doba</h3>
+                    <p class="text-muted-foreground">
+                      Pondělí - Pátek: 7:00 - 17:00<br />
+                      Sobota: 8:00 - 12:00<br />
+                      Neděle: Zavřeno
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="rounded-xl overflow-hidden shadow-lg h-64 bg-accent flex items-center justify-center">
+              <p class="text-muted-foreground">Mapa - Google Maps integrace</p>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div>
+            <ContactForm />
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Company Info -->
+    <section class="py-20 bg-frosted-blue/10">
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold mb-6 text-center">Firemní údaje</h2>
+          <div class="grid md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <p class="font-semibold mb-1">Obchodní název:</p>
+              <p class="text-muted-foreground">Stavební firma s.r.o.</p>
+            </div>
+            <div>
+              <p class="font-semibold mb-1">IČO:</p>
+              <p class="text-muted-foreground">12345678</p>
+            </div>
+            <div>
+              <p class="font-semibold mb-1">DIČ:</p>
+              <p class="text-muted-foreground">CZ12345678</p>
+            </div>
+            <div>
+              <p class="font-semibold mb-1">Zapsáno:</p>
+              <p class="text-muted-foreground">Městský soud v Praze</p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</Layout>
