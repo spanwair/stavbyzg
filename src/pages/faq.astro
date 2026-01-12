@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/blocks/Navbar.astro";
+import FaqSection from "../components/blocks/FaqSection.astro";
+import Footer from "../components/blocks/Footer.astro";
+import company from "../data/company.json";
+
+const title = "Často kladené otázky | " + company.fullName;
+const description =
+  "Najděte odpovědi na nejčastější dotazy ohledně stavby domů, materiálů, časových harmonogramů a cen. Stavíme od základů po střechu v okolí Olomouce.";
+---
+
+<Layout title={title} description={description}>
+  <Navbar />
+  <main class="pt-32 min-h-screen bg-oxford-navy">
+    <FaqSection />
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-cerulean/5">
+      <div class="container px-6 mx-auto text-center">
+        <h3 class="text-3xl font-bold text-honeydew mb-6">
+          Nenašli jste svou odpověď?
+        </h3>
+        <p class="text-honeydew/70 mb-10 max-w-2xl mx-auto">
+          Každý projekt je jedinečný. Pokud máte specifické dotazy ohledně vaší
+          plánované stavby, neváhejte nás kontaktovat přímo.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/kontakt"
+            class="px-8 py-3 rounded-full bg-cerulean text-white font-semibold hover:bg-cerulean/80 transition-all shadow-lg shadow-cerulean/20"
+          >
+            Kontaktujte nás
+          </a>
+          <a
+            href="tel:+420777123456"
+            class="px-8 py-3 rounded-full border border-cerulean/30 text-honeydew font-semibold hover:bg-white/5 transition-all"
+          >
+            Zavolejte nám
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

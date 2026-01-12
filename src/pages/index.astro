@@ -1,17 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/blocks/Navbar.astro';
-import VideoHero from '../components/blocks/VideoHero.astro';
-import GalleryCarousel from '../components/blocks/GalleryCarousel.astro';
-import BlogSection from '../components/blocks/BlogSection.astro';
-import Footer from '../components/blocks/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/blocks/Navbar.astro";
+import VideoHero from "../components/blocks/VideoHero.astro";
+import ServicesGrid from "../components/blocks/ServicesGrid.astro";
+import BlogSection from "../components/blocks/BlogSection.astro";
+import Footer from "../components/blocks/Footer.astro";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Stavby Zapletal – Gabriel",
+  image: "https://stavebni-firma.cz/logo.png",
+  "@id": "https://stavebni-firma.cz",
+  url: "https://stavebni-firma.cz",
+  telephone: "+420721131463",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "U parčíku 47/24",
+    addressLocality: "Topolany - Olomouc",
+    postalCode: "779 00",
+    addressCountry: "CZ",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 49.585,
+    longitude: 17.185,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "15:00",
+  },
+  sameAs: ["https://facebook.com/stavebnifirma"],
+};
 ---
 
-<Layout>
+<Layout
+  title="Stavby Zapletal – Gabriel | Profesionální stavební firma Olomouc"
+  description="Stavíme vaše sny od základů po střechu. Profesionální stavební firma s tradicí a moderním přístupem. Realizace novostaveb, rekonstrukcí a zateplení v Olomouci a okolí."
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Navbar />
   <main>
     <VideoHero />
-    <GalleryCarousel />
+    <ServicesGrid />
     <BlogSection />
   </main>
   <Footer />

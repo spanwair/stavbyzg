@@ -1,0 +1,79 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/blocks/Navbar.astro";
+import Footer from "../../components/blocks/Footer.astro";
+import Container from "../../components/ui/Container.astro";
+import Card from "../../components/ui/Card.astro";
+import { blogPosts } from "../../data/blog";
+import company from "../../data/company.json";
+
+const title = "Blog o stavbě a rekonstrukci | Stavby Zapletal – Gabriel";
+const description =
+  "Tipy a rady ze světa stavebnictví. Jak na zateplení, výběr cihel nebo povolení stavby. Odborné články od profesionálů Stavby Zapletal – Gabriel.";
+---
+
+<Layout title={title} description={description}>
+  <Navbar />
+  <main>
+    <!-- Hero Section matching o-nas.astro -->
+    <section
+      class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew"
+    >
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up"
+          >
+            Náš blog o stavění
+          </h1>
+          <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
+            Praktické rady, tipy a řešení pro vaši stavbu či rekonstrukci
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-20 lg:py-32">
+      <Container>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+        >
+          {
+            blogPosts.map((post) => (
+              <Card
+                title={post.title}
+                description={post.description}
+                image={post.featuredImage}
+                href={`/blog/${post.slug}`}
+                author={post.author}
+                date={post.date}
+                class="animate-fade-in-up"
+              />
+            ))
+          }
+        </div>
+      </Container>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-frosted-blue/10 border-t border-white/5">
+      <Container class="text-center">
+        <h2 class="text-3xl font-bold text-foreground mb-4">
+          Máte konkrétní dotaz?
+        </h2>
+        <p class="text-muted-foreground mb-8 max-w-xl mx-auto">
+          Nenašli jste téma, které vás zajímá? Napište nám a my vám rádi
+          poradíme nebo o tom napíšeme příští článek.
+        </p>
+        <a
+          href="/kontakt"
+          class="inline-block px-10 py-4 rounded-full bg-cerulean text-white font-bold hover:bg-cerulean/80 transition-all shadow-xl shadow-cerulean/20"
+        >
+          Kontaktujte nás
+        </a>
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,64 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/blocks/Navbar.astro';
-import Container from '../components/ui/Container.astro';
-import Button from '../components/ui/Button.astro';
-import Footer from '../components/blocks/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/blocks/Navbar.astro";
+import Container from "../components/ui/Container.astro";
+import Button from "../components/ui/Button.astro";
+import Footer from "../components/blocks/Footer.astro";
 
-const services = [
-  {
-    id: 'zaklady',
-    title: 'Základy a zemní práce',
-    description: 'Kompletní příprava staveniště, výkopy, základové konstrukce a izolace. Zajišťujeme stabilní základ pro váš dům.',
-    icon: `<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>`,
-    features: ['Výkopové práce', 'Základové desky', 'Izolace proti vodě', 'Drenáže']
-  },
-  {
-    id: 'hruba-stavba',
-    title: 'Hrubá stavba',
-    description: 'Realizace nosných konstrukcí, zdění, stropů a schodišť. Používáme kvalitní materiály a moderní technologie.',
-    icon: `<rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path>`,
-    features: ['Zdění z cihel a tvárnic', 'Monolitické konstrukce', 'Stropní panely', 'Schodiště']
-  },
-  {
-    id: 'strechy',
-    title: 'Střechy a krovy',
-    description: 'Návrh a realizace střešních konstrukcí všech typů. Od klasických sedlových střech po moderní ploché střechy.',
-    icon: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>`,
-    features: ['Dřevěné krovy', 'Střešní krytiny', 'Izolace střech', 'Klempířské práce']
-  },
-  {
-    id: 'zatepleni',
-    title: 'Zateplení a fasády',
-    description: 'Kontaktní zateplovací systémy, moderní omítky a fasádní obklady. Zvyšte energetickou úspornost vašeho domu.',
-    icon: `<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>`,
-    features: ['Kontaktní zateplení', 'Minerální omítky', 'Obkladové systémy', 'Nátěry fasád']
-  },
-  {
-    id: 'rekonstrukce',
-    title: 'Rekonstrukce a přestavby',
-    description: 'Komplexní rekonstrukce starších objektů, přístavby a nástavby. Respektujeme původní charakter budov.',
-    icon: `<path d="M12 3v18"></path><path d="m8 9-4 4 4 4"></path><path d="M16 15l4-4-4-4"></path>`,
-    features: ['Rekonstrukce domů', 'Přístavby', 'Nástavby podkroví', 'Sanace vlhkosti']
-  },
-  {
-    id: 'kompletace',
-    title: 'Kompletace staveb',
-    description: 'Dokončovací práce, instalace, podlahy a malířské práce. Realizace domů na klíč od A do Z.',
-    icon: `<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path>`,
-    features: ['Elektroinstalace', 'Voda a topení', 'Podlahy', 'Malířské práce']
-  }
-];
+import ServicesGrid from "../components/blocks/ServicesGrid.astro";
 ---
 
-<Layout title="Služby - Stavební firma" description="Kompletní stavební služby od základů po střechu. Realizace rodinných domů, rekonstrukce a zateplení.">
+<Layout
+  title="Stavební služby a realizace | Stavby Zapletal – Gabriel"
+  description="Kompletní stavební práce: základy, zemní práce, hrubé stavby, střechy, zateplení a rekonstrukce. Profesionální přístup pro váš dům v Olomouci a okolí."
+>
   <Navbar />
   <main>
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew">
+    <section
+      class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew"
+    >
       <Container>
         <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up"
+          >
             Naše služby
           </h1>
           <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
@@ -69,36 +33,12 @@ const services = [
     </section>
 
     <!-- Services Grid -->
-    <section class="py-20">
-      <Container>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div id={service.id} class="bg-background border border-border rounded-xl p-8 hover:shadow-xl transition-shadow">
-              <div class="w-14 h-14 bg-gradient-primary rounded-lg flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-honeydew">
-                  <Fragment set:html={service.icon} />
-                </svg>
-              </div>
-              <h3 class="text-2xl font-semibold mb-4">{service.title}</h3>
-              <p class="text-muted-foreground mb-6">{service.description}</p>
-              <ul class="space-y-2">
-                {service.features.map((feature) => (
-                  <li class="flex items-center gap-2 text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary flex-shrink-0">
-                      <path d="M20 6 9 17l-5-5"></path>
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
+    <ServicesGrid />
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-oxford-navy to-cerulean text-honeydew">
+    <section
+      class="py-20 bg-gradient-to-r from-oxford-navy to-cerulean text-honeydew"
+    >
       <Container>
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-bold mb-6">

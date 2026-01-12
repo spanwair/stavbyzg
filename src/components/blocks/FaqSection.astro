@@ -1,0 +1,184 @@
+---
+const faqs = [
+  {
+    question: "Co všechno stavíte?",
+    answer:
+      "Zajišťujeme kompletní realizaci od základů až po střechu. Naše služby zahrnují fázi plánování, vyřízení stavební dokumentace i pomoc s vyřízením dotací.",
+  },
+  {
+    question: "Jaká je vaše oblast působnosti?",
+    answer:
+      "Naše firma působí především v okolí Olomouce. Standardně realizujeme zakázky v okruhu do 100 km od tohoto města.",
+  },
+  {
+    question: "Kdy probíhají stavební práce?",
+    answer:
+      "Venkovní hrubé práce a základy realizujeme převážně v sezóně od dubna do října. Vnitřní práce a dokončování interiérů provádíme celoročně bez ohledu na počasí.",
+  },
+  {
+    question: "Jaké materiály používáte?",
+    answer:
+      "Pracujeme výhradně s kvalitními a certifikovanými materiály od prověřených dodavatelů. Konkrétní výběr materiálů vždy konzultujeme se zákazníkem podle jeho preferencí a rozpočtu.",
+  },
+  {
+    question: "Jaká je cena stavby?",
+    answer:
+      "Cena každé realizace je individuální a odvíjí se od konkrétního projektu a požadavků. Po úvodní schůzce a prostudování podkladů vám připravíme podrobný rozpočet na míru.",
+  },
+  {
+    question: "Jak dlouho trvá stavba rodinného domu?",
+    answer:
+      "Časový harmonogram závisí na složitosti projektu a rozsahu prací. Přesný termín dokončení jednotlivých etap je vždy součástí naší smlouvy o dílo.",
+  },
+  {
+    question: "Jakými jazyky se s vámi domluvíme?",
+    answer:
+      "Hlavním komunikačním jazykem je čeština a angličtina. Částečně jsme schopni komunikovat také v polštině a norštině, což usnadňuje spolupráci se zahraničními klienty.",
+  },
+  {
+    question: "Pomáháte i s administrativou a dotacemi?",
+    answer:
+      "Ano, našim klientům nabízíme plnou podporu při vyřizování stavebního povolení. Zároveň pomáháme s administrací dotačních programů jako je Nová zelená úsporám.",
+  },
+  {
+    question: "Stavíte i základové desky samostatně?",
+    answer:
+      "Ano, realizujeme samostatné základové desky pro různé typy staveb. Zajistíme veškeré zemní práce a přípravu inženýrských sítí.",
+  },
+  {
+    question: "Děláte i kompletní rekonstrukce starších domů?",
+    answer:
+      "Provádíme částečné i celkové rekonstrukce, včetně zateplení fasád a výměny střech. Pomůžeme vám modernizovat váš stávající domov podle nejnovějších standardů.",
+  },
+  {
+    question: "Jak probíhá první schůzka se zákazníkem?",
+    answer:
+      "První schůzka slouží k vzájemnému seznámení a detailnímu probrání vašich představ o budoucím bydlení. Probereme vaše možnosti, rozpočet a navrhneme optimální postup realizace.",
+  },
+  {
+    question: "Můžu si na stavbu dodat vlastní materiál?",
+    answer:
+      "Tato možnost je po předchozí domluvě možná. Většinou však doporučujeme využití našich prověřených materiálů, na které poskytujeme plnou záruku.",
+  },
+  {
+    question: "Zajišťujete i kompletní realizaci střechy?",
+    answer:
+      "Ano, součástí naší nabídky je i stavba krovů a pokládka střešní krytiny. Spolupracujeme s tesaři a pokrývači s dlouholetou praxí v oboru.",
+  },
+  {
+    question: "Jaký je postup při vyřizování dotací?",
+    answer:
+      "Celý proces začíná analýzou, na které dotace máte nárok. Následně za vás připravíme veškeré technické podklady a podáme příslušnou žádost.",
+  },
+  {
+    question: "Je možné vidět vaše rozestavěné nebo hotové stavby?",
+    answer:
+      "Ano, po předchozí domluvě vám rádi ukážeme naše aktuální realizace. Můžete se tak na vlastní oči přesvědčit o kvalitě naší práce a použitých postupů.",
+  },
+];
+---
+
+<section class="py-24 relative overflow-hidden">
+  <div class="container relative z-10 px-6 mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2
+        class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-honeydew to-cerulean bg-clip-text text-transparent"
+      >
+        Často kladené otázky
+      </h2>
+      <p class="text-honeydew/70 text-lg">
+        Máte otázky ohledně stavby vašeho nového domova? Zde najdete odpovědi na
+        nejčastější dotazy našich klientů.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-4">
+      {
+        faqs.map((faq, index) => (
+          <div
+            class="faq-item group rounded-2xl border border-cerulean/20 bg-oxford-navy/20 backdrop-blur-md transition-all duration-300 hover:border-cerulean/40"
+            data-index={index}
+          >
+            <button
+              class="faq-trigger w-full px-6 py-5 flex items-center justify-between text-left gap-4"
+              aria-expanded="false"
+            >
+              <span class="text-lg font-medium text-honeydew group-hover:text-white transition-colors">
+                {faq.question}
+              </span>
+              <span class="faq-icon relative size-6 shrink-0 transition-transform duration-300">
+                <span class="absolute top-1/2 left-0 h-0.5 w-full rounded-full bg-cerulean" />
+                <span class="absolute top-0 left-1/2 h-full w-0.5 rounded-full bg-cerulean transition-transform duration-300" />
+              </span>
+            </button>
+
+            <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-6 pb-6 pt-2 text-honeydew/80 leading-relaxed border-t border-cerulean/10 mt-2">
+                {faq.answer}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFaq() {
+    const triggers = document.querySelectorAll(".faq-trigger");
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const item = trigger.closest(".faq-item");
+        const content = item?.querySelector(".faq-content") as HTMLElement;
+        const icon = trigger.querySelector(".faq-icon span:last-child");
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+        // Close all other items
+        document.querySelectorAll(".faq-item").forEach((otherItem) => {
+          if (otherItem !== item) {
+            const otherTrigger = otherItem.querySelector(".faq-trigger");
+            const otherContent = otherItem.querySelector(
+              ".faq-content",
+            ) as HTMLElement;
+            const otherIcon = otherItem.querySelector(
+              ".faq-icon span:last-child",
+            );
+
+            otherTrigger?.setAttribute("aria-expanded", "false");
+            if (otherContent) otherContent.style.maxHeight = "0";
+            if (otherIcon) otherIcon.style.transform = "scaleY(1)";
+          }
+        });
+
+        // Toggle current item
+        trigger.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
+        if (content) {
+          content.style.maxHeight = !isExpanded
+            ? `${content.scrollHeight}px`
+            : "0";
+        }
+        if (icon) {
+          icon.style.transform = !isExpanded ? "scaleY(0)" : "scaleY(1)";
+        }
+      });
+    });
+  }
+
+  // Initialize on load
+  initFaq();
+
+  // Re-initialize for View Transitions
+  document.addEventListener("astro:after-swap", initFaq);
+</script>
+
+<style>
+  .faq-icon span:last-child {
+    transform-origin: center;
+  }
+
+  .faq-item:hover {
+    box-shadow: 0 8px 32px -8px rgba(0, 150, 199, 0.2);
+  }
+</style>

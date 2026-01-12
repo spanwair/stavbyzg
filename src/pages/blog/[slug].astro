@@ -1,0 +1,189 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/blocks/Navbar.astro";
+import Footer from "../../components/blocks/Footer.astro";
+import Container from "../../components/ui/Container.astro";
+import { blogPosts } from "../../data/blog";
+import company from "../../data/company.json";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const title = `${post.title} - Blog`;
+---
+
+<Layout title={title} description={post.description}>
+  <Navbar />
+  <main>
+    <!-- Hero Section matching o-nas.astro style -->
+    <section
+      class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew"
+    >
+      <Container>
+        <div class="max-w-4xl mx-auto text-center">
+          <div
+            class="flex items-center justify-center gap-4 text-sm text-frosted-blue mb-6"
+          >
+            <span>{post.date}</span>
+            <span>•</span>
+            <span>{post.author}</span>
+          </div>
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up leading-tight"
+          >
+            {post.title}
+          </h1>
+          <p
+            class="text-xl text-frosted-blue animate-fade-in-up stagger-1 max-w-2xl mx-auto"
+          >
+            {post.description}
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-20 lg:py-32">
+      <Container>
+        <article class="max-w-4xl mx-auto">
+          <!-- Featured Image -->
+          <div
+            class="mb-16 rounded-2xl overflow-hidden shadow-2xl border border-white/5"
+          >
+            <img
+              src={post.featuredImage}
+              alt={post.title}
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+          <!-- Article Text -->
+          <div
+            class="prose prose-lg max-w-none mb-20 whitespace-pre-line leading-relaxed text-muted-foreground"
+          >
+            {post.content}
+          </div>
+
+          <!-- Gallery -->
+          <div class="mb-24">
+            <h2 class="text-3xl font-bold mb-8">Galerie k tématu</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {
+                post.images.map((img, idx) => (
+                  <div class="group relative aspect-square overflow-hidden rounded-xl border border-border bg-muted">
+                    <img
+                      src={img}
+                      alt={`${post.title} - detail ${idx + 1}`}
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Pros/Cons Analysis -->
+          <div class="grid md:grid-cols-2 gap-8 mb-20">
+            <div
+              class="bg-honeydew/30 border border-secondary/20 rounded-2xl p-8 backdrop-blur-sm"
+            >
+              <h3
+                class="text-2xl font-bold text-secondary mb-6 flex items-center gap-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg
+                >
+                Co je dobré
+              </h3>
+              <ul class="space-y-4 text-muted-foreground">
+                {
+                  post.pros.map((pro) => (
+                    <li class="flex items-start gap-3">
+                      <span class="size-1.5 rounded-full bg-secondary mt-2.5 shrink-0" />
+                      <span>{pro}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+
+            <div
+              class="bg-red-500/5 border border-red-500/10 rounded-2xl p-8 backdrop-blur-sm"
+            >
+              <h3
+                class="text-2xl font-bold text-red-600 mb-6 flex items-center gap-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+                >
+                Co je špatné
+              </h3>
+              <ul class="space-y-4 text-muted-foreground">
+                {
+                  post.cons.map((con) => (
+                    <li class="flex items-start gap-3">
+                      <span class="size-1.5 rounded-full bg-red-400 mt-2.5 shrink-0" />
+                      <span>{con}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+
+          <!-- Back Link -->
+          <div
+            class="border-t border-border pt-12 flex justify-between items-center"
+          >
+            <a
+              href="/blog"
+              class="flex items-center gap-2 text-muted-foreground hover:text-cerulean transition-colors font-medium"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+              >
+              Zpět na blog
+            </a>
+            <a
+              href="/kontakt"
+              class="px-8 py-3 rounded-full bg-secondary text-honeydew font-bold hover:bg-secondary/90 transition-all shadow-lg"
+            >
+              Nezávazná poptávka
+            </a>
+          </div>
+        </article>
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</Layout>

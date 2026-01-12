@@ -1,0 +1,27 @@
+{
+  "name": "Smalljobs s.r.o.",
+  "fullName": "Stavby Zapletal – Gabriel",
+  "description": "Profesionální stavební firma s tradicí a moderním přístupem. Stavíme domy od základů po střechu s důrazem na kvalitu a spolehlivost.",
+  "address": {
+    "street": "U parčíku 47/24",
+    "zip": "779 00",
+    "city": "Topolany - Olomouc"
+  },
+  "phones": [
+    "+420 721 131 463",
+    "+420 739 466 939"
+  ],
+  "emails": [
+    "info@stavebni-firma.cz"
+  ],
+  "workingHours": {
+    "weekdays": "Po - Pá: 9:00 - 15:00",
+    "saturday": "So: Zavřeno",
+    "sunday": "Ne: Zavřeno"
+  },
+  "registration": {
+    "ico": "22312846",
+    "dic": "Firma není plátce DPH",
+    "court": "C 97915/KSOS Krajský soud v Ostravě"
+  }
+}

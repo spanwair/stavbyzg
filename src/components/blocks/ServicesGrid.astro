@@ -1,0 +1,59 @@
+---
+import Container from "../ui/Container.astro";
+import { services } from "../../data/services";
+---
+
+<section class="py-20">
+  <Container>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map((service) => (
+          <div
+            id={service.id}
+            class="bg-background border border-border rounded-xl p-8 hover:shadow-xl transition-shadow"
+          >
+            <div class="w-14 h-14 bg-gradient-primary rounded-lg flex items-center justify-center mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-honeydew"
+              >
+                <Fragment set:html={service.icon} />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">{service.title}</h3>
+            <p class="text-muted-foreground mb-6">{service.description}</p>
+            <ul class="space-y-2">
+              {service.features.map((feature) => (
+                <li class="flex items-center gap-2 text-sm">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-secondary flex-shrink-0"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

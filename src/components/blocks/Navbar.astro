@@ -1,4 +1,7 @@
 ---
+import Button from "../ui/Button.astro";
+import company from "../../data/company.json";
+
 const navLinks = [
   { name: "Domů", href: "/" },
   { name: "O nás", href: "/o-nas" },
@@ -9,41 +12,49 @@ const navLinks = [
 ---
 
 <nav class="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-full max-w-7xl px-6">
+  <!-- Main Navbar -->
   <div
-    class="rounded-full border border-cerulean/30 bg-oxford-navy/20 backdrop-blur-md shadow-lg"
-    style="background: linear-gradient(135deg, rgba(29, 53, 87, 0.5), rgba(69, 123, 157, 1))"
+    id="nav-main"
+    class="nav-container rounded-full border border-cerulean/30 bg-oxford-navy/20 backdrop-blur-md shadow-lg relative z-20"
   >
     <div class="flex items-center justify-between px-6 py-3">
       <!-- Logo -->
       <a href="/" class="flex shrink-0 items-center gap-2">
-        <div
-          class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl md:hidden"
-        >
-          S-ZG
-        </div>
-        <span class="font-semibold text-lg hidden sm:inline"
-          >Stavby Zapletal – Gabriel</span
+        <img
+          src="/logo.png"
+          alt={company.name}
+          class="h-[30px] md:h-[50px] w-auto bg-primary-foreground p-[2px] rounded-[10px]"
+        />
+        <span class="font-semibold text-lg hidden md:inline text-honeydew"
+          >{company.fullName}</span
         >
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-2">
-        {
-          navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="text-sm font-medium text-honeydew hover:text-honeydew hover:bg-white/10 transition-all px-4 py-2 rounded-lg"
-            >
-              {link.name}
-            </a>
-          ))
-        }
+      <div class="hidden lg:flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="text-sm font-medium text-honeydew hover:text-honeydew hover:bg-white/10 transition-all px-4 py-2 rounded-lg"
+              >
+                {link.name}
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="flex items-center gap-3 ml-4">
+          <Button variant="secondary" size="sm" href="/sluzby">Služby</Button>
+          <Button variant="primary" size="sm" href="/kontakt">Kontakt</Button>
+        </div>
       </div>
 
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-button"
-        class="lg:hidden relative flex size-8 text-muted-foreground"
+        class="lg:hidden relative flex size-8 text-muted-foreground text-honeydew"
         aria-label="Toggle menu"
       >
         <span class="sr-only">Otevřít hlavní menu</span>
@@ -62,13 +73,18 @@ const navLinks = [
         </div>
       </button>
     </div>
+  </div>
 
-    <!-- Mobile Menu -->
+  <!-- Mobile Menu Container -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden -mt-10 pt-10 overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 nav-container border border-cerulean/30 bg-oxford-navy/20 backdrop-blur-md shadow-lg rounded-b-[50px] relative z-10"
+  >
     <div
-      id="mobile-menu"
-      class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0"
+      id="mobile-menu-items"
+      class="opacity-0 transition-opacity duration-300 ease-in-out"
     >
-      <nav class="flex flex-col divide-y divide-white/10 px-6 pb-4">
+      <nav class="flex flex-col divide-y divide-white/10 px-6 pb-6 pt-4">
         {
           navLinks.map((link) => (
             <a
@@ -79,6 +95,14 @@ const navLinks = [
             </a>
           ))
         }
+        <div class="flex flex-col gap-4 pt-6">
+          <Button variant="primary" size="md" href="/kontakt" class="w-full"
+            >Kontakt</Button
+          >
+          <Button variant="secondary" size="md" href="/sluzby" class="w-full"
+            >Naše služby</Button
+          >
+        </div>
       </nav>
     </div>
   </div>
@@ -88,25 +112,50 @@ const navLinks = [
   // Mobile menu toggle
   const menuButton = document.getElementById("mobile-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
+  const menuItems = document.getElementById("mobile-menu-items");
 
-  if (menuButton && mobileMenu) {
+  if (menuButton && mobileMenu && menuItems) {
     menuButton.addEventListener("click", () => {
-      const isOpen = mobileMenu.classList.contains("max-h-0");
+      const isClosed = mobileMenu.classList.contains("max-h-0");
 
-      if (isOpen) {
-        mobileMenu.classList.remove("max-h-0", "opacity-0");
-        mobileMenu.classList.add("max-h-96", "opacity-100");
+      if (isClosed) {
+        // OPEN SEQUENCE
         menuButton.classList.add("menu-open");
+        // 1. Expand box
+        mobileMenu.classList.remove("max-h-0", "opacity-0");
+        mobileMenu.classList.add("max-h-[500px]", "opacity-100");
+
+        // 2. Wait for expansion, then fade in text
+        setTimeout(() => {
+          menuItems.classList.remove("opacity-0");
+          menuItems.classList.add("opacity-100");
+        }, 300);
       } else {
-        mobileMenu.classList.add("max-h-0", "opacity-0");
-        mobileMenu.classList.remove("max-h-96", "opacity-100");
-        menuButton.classList.remove("menu-open");
+        // CLOSE SEQUENCE
+        // 1. Fade out text
+        menuItems.classList.remove("opacity-100");
+        menuItems.classList.add("opacity-0");
+
+        // 2. Wait for fade out, then shrink height
+        setTimeout(() => {
+          mobileMenu.classList.add("max-h-0", "opacity-0");
+          mobileMenu.classList.remove("max-h-[500px]", "opacity-100");
+          menuButton.classList.remove("menu-open");
+        }, 300);
       }
     });
   }
 </script>
 
 <style>
+  .nav-container {
+    background: linear-gradient(
+      135deg,
+      rgba(29, 53, 87, 0.5),
+      rgba(69, 123, 157, 1)
+    );
+  }
+
   .menu-open .menu-line:nth-child(1) {
     transform: translateY(0) rotate(45deg);
   }

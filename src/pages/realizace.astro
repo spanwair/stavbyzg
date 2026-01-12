@@ -1,107 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/blocks/Navbar.astro';
-import Container from '../components/ui/Container.astro';
-import Card from '../components/ui/Card.astro';
-import Footer from '../components/blocks/Footer.astro';
-
-const allProjects = [
-  {
-    id: 'rodinny-dum-1',
-    title: 'Rodinný dům - Kompletní realizace',
-    description: 'Moderní rodinný dům postavený s důrazem na kvalitu a detail. Kompletní realizace od základů po střechu.',
-    author: 'Stavební tým',
-    date: '15. 1. 2024',
-    href: '/realizace/rodinny-dum-1',
-    image: '/images-work/skyinvest_images/dum1/IMG_4828-1030x773.jpg'
-  },
-  {
-    id: 'rodinny-dum-2',
-    title: 'Rodinný dům - přestavba',
-    description: 'Kompletní rekonstrukce a modernizace rodinného domu s novými interiéry a fasádou.',
-    author: 'Stavební tým',
-    date: '12. 1. 2024',
-    href: '/realizace/rodinny-dum-2',
-    image: '/images-work/skyinvest_images/dum2/Obyvaci_pokoj-1030x773.jpg'
-  },
-  {
-    id: 'rodinny-dum-3',
-    title: 'Rodinný dům s moderním designem',
-    description: 'Novostavba rodinného domu s moderními architektonickými prvky a funkčním uspořádáním.',
-    author: 'Stavební tým',
-    date: '10. 1. 2024',
-    href: '/realizace/rodinny-dum-3',
-    image: '/images-work/skyinvest_images/dum3/DSC09965-1030x773.jpg'
-  },
-  {
-    id: 'rodinny-dum-4',
-    title: 'Rodinný dům - kompletní interiér',
-    description: 'Realizace rodinného domu včetně kompletních interiérových prací a finálních úprav.',
-    author: 'Stavební tým',
-    date: '8. 1. 2024',
-    href: '/realizace/rodinny-dum-4',
-    image: '/images-work/skyinvest_images/dum4/DSCN1892-1030x773.jpg'
-  },
-  {
-    id: 'rodinny-dum-5',
-    title: 'Rodinný dům s interiérem',
-    description: 'Kompletní realizace rodinného domu včetně moderních interiérů a finálních úprav.',
-    author: 'Stavební tým',
-    date: '5. 1. 2024',
-    href: '/realizace/rodinny-dum-5',
-    image: '/images-work/skyinvest_images/dum5/DSCN1880-e1589460887235.jpg'
-  },
-  {
-    id: 'rodinny-dum-6',
-    title: 'Rodinný dům s moderní architekturou',
-    description: 'Stavba rodinného domu s moderními prvky a funkčním uspořádáním. Realizace podle požadavků klienta.',
-    author: 'Stavební tým',
-    date: '3. 1. 2024',
-    href: '/realizace/rodinny-dum-6',
-    image: '/images-work/skyinvest_images/dum6/DSCN6557.jpg'
-  },
-  {
-    id: 'bytova-jednotka-1',
-    title: 'Bytová jednotka - moderní bydlení',
-    description: 'Realizace moderní bytové jednotky s důrazem na funkčnost a estetiku prostoru.',
-    author: 'Stavební tým',
-    date: '1. 1. 2024',
-    href: '/realizace/bytova-jednotka-1',
-    image: '/images-work/skyinvest_images/byt1/s1200_IMG-3222.jpg'
-  },
-  {
-    id: 'bytova-jednotka-2',
-    title: 'Bytová jednotka - elegantní interiér',
-    description: 'Moderní bytová jednotka s elegantními interiéry a kvalitními materiály.',
-    author: 'Stavební tým',
-    date: '28. 12. 2023',
-    href: '/realizace/bytova-jednotka-2',
-    image: '/images-work/skyinvest_images/byt2/s1200_502-10-.jpg'
-  },
-  {
-    id: 'bytova-jednotka-3',
-    title: 'Bytová jednotka - kompletní rekonstrukce',
-    description: 'Kompletní rekonstrukce bytové jednotky s novým dispozičním řešením a moderním vybavením.',
-    author: 'Stavební tým',
-    date: '25. 12. 2023',
-    href: '/realizace/bytova-jednotka-3',
-    image: '/images-work/skyinvest_images/byt3/s1200_DSCN2873.JPG'
-  }
-];
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/blocks/Navbar.astro";
+import Container from "../components/ui/Container.astro";
+import Card from "../components/ui/Card.astro";
+import Footer from "../components/blocks/Footer.astro";
+import { projects as allProjects } from "../data/projects";
 ---
 
-<Layout title="Realizace - Stavební firma" description="Prohlédněte si naše dokončené stavební projekty. Reference rodinných domů, rekonstrukcí a komerčních staveb.">
+<Layout
+  title="Naše realizace a reference | Stavby Zapletal – Gabriel"
+  description="Prohlédněte si naše dokončené stavební projekty v Olomouci a okolí. Reference rodinných domů, rekonstrukcí a hrubých staveb."
+>
   <Navbar />
   <main>
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew">
+    <section
+      class="pt-32 pb-16 bg-gradient-to-b from-oxford-navy to-cerulean text-honeydew"
+    >
       <Container>
         <div class="max-w-3xl mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up"
+          >
             Naše realizace
           </h1>
           <p class="text-xl text-frosted-blue animate-fade-in-up stagger-1">
-            Podívejte se na naše dokončené projekty a přesvědčte se o kvalitě naší práce
+            Podívejte se na naše dokončené projekty a přesvědčte se o kvalitě
+            naší práce
           </p>
         </div>
       </Container>
@@ -110,18 +35,22 @@ const allProjects = [
     <!-- Projects Grid -->
     <section class="py-20">
       <Container>
-        <div class="grid gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-6 lg:gap-y-12 2xl:grid-cols-3">
-          {allProjects.map((project) => (
-            <Card
-              title={project.title}
-              description={project.description}
-              image={project.image}
-              href={project.href}
-              author={project.author}
-              date={project.date}
-              class="animate-fade-in-up"
-            />
-          ))}
+        <div
+          class="grid gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-6 lg:gap-y-12 2xl:grid-cols-3"
+        >
+          {
+            allProjects.map((project) => (
+              <Card
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                href={project.href}
+                author={project.author}
+                date={project.date}
+                class="animate-fade-in-up"
+              />
+            ))
+          }
         </div>
       </Container>
     </section>
