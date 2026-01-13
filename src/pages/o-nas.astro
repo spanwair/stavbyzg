@@ -37,15 +37,15 @@ import Footer from "../components/blocks/Footer.astro";
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Naše historie</h2>
             <div class="space-y-4 text-muted-foreground">
               <p>
-                Naše stavební firma byla založena v roce 20 s vizí poskytovat
+                Naše stavební firma byla založena v roce 2024 s vizí poskytovat
                 kvalitní stavební služby s důrazem na preciznost, spolehlivost a
                 spokojenost zákazníků.
               </p>
               <p>
-                Za více než 20 let působení na trhu jsme realizovali stovky
-                projektů - od rodinných domů přes bytové domy až po komerční
-                objekty. Každý projekt je pro nás jedinečný a přistupujeme k
-                němu s maximální péčí.
+                Z vlastních projektů máme více než 30 let působení ve
+                stavebnictví. Realizovali jsme stovky projektů - od rodinných
+                domů přes bytové domy až po komerční objekty. Každý projekt je
+                pro nás jedinečný a přistupujeme k němu s maximální péčí.
               </p>
               <p>
                 Naším cílem je nejen stavět kvalitní budovy, ale také budovat
@@ -166,40 +166,26 @@ import Footer from "../components/blocks/Footer.astro";
         <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
           Náš tým
         </h2>
-        <div class="grid md:grid-cols-4 gap-8">
+        <div class="flex flex-wrap justify-center gap-12">
           {
             [
               {
-                name: "Ing. Jan Novák",
-                role: "Jednatel a stavbyvedoucí",
-                image:
-                  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+                name: "Jan Gabriel",
+                role: "Jednatel a projektový manažer",
+                image: "/team/gaba.jpg",
               },
               {
-                name: "Petr Svoboda",
-                role: "Projektový manažer",
-                image:
-                  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-              },
-              {
-                name: "Marie Dvořáková",
-                role: "Hlavní architektka",
-                image:
-                  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
-              },
-              {
-                name: "Tomáš Černý",
-                role: "Technický ředitel",
-                image:
-                  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
+                name: "Bohumil Zapletal",
+                role: "Stavbyvedoucí a projektový manažer",
+                image: "/team/bob.png",
               },
             ].map((member) => (
-              <div class="text-center">
-                <div class="mb-4 rounded-xl overflow-hidden shadow-lg">
+              <div class="text-center w-full md:w-1/4 max-w-sm">
+                <div class="mb-4 rounded-xl overflow-hidden shadow-lg aspect-square">
                   <img
                     src={member.image}
                     alt={member.name}
-                    class="w-full aspect-square object-cover"
+                    class="w-full h-full object-cover"
                   />
                 </div>
                 <h3 class="font-semibold text-lg">{member.name}</h3>

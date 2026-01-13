@@ -1,0 +1,114 @@
+---
+const steps = [
+  {
+    title: "První setkání a plánování",
+    description: "Úvodní diskuse nad vašimi plány. Pokud ještě nemáte projekt, rádi vám s ním pomůžeme a navrhneme optimální řešení pro váš budoucí domov.",
+    icon: "🤝"
+  },
+  {
+    title: "Rozpočet, harmonogram a financování",
+    description: "Detailní projednání rozpočtu a časového plánu. Financování je rozděleno do 5 fází: 20% zálohy až po dokončení příslušných etap výstavby. Neplatíte nic předem.",
+    icon: "📊"
+  },
+  {
+    title: "Podpis smlouvy a garance",
+    description: "Smlouva jasně definuje rozsah prací a termíny. Je to vaše pojista, že přesně dodržíme plán, materiály i dohodnutou cenu.",
+    icon: "📝"
+  },
+  {
+    title: "Zahájení stavby",
+    description: "Startujeme projekt. Do té doby neplatíte nic. První fakturace proběhne až po dokončení 20% stavby.",
+    icon: "🏗️"
+  },
+  {
+    title: "1. Platba - Základy a deska (20%)",
+    description: "První etapa hotova. Máme vybetonované základy a základovou desku. Hradíte první část ceny (20%).",
+    icon: "kb-foundation" // Placeholder for visual styling consistency
+  },
+  {
+    title: "2. Platba - Hrubá stavba (40%)",
+    description: "Hrubá stavba roste. Máme vyzděné obvodové i vnitřní zdivo. Hradíte druhou část (dosaženo 40% rozestavěnosti).",
+    icon: "🧱"
+  },
+  {
+    title: "3. Platba - Střecha (60%)",
+    description: "Dům je pod střechou. Krov, krytina a klempířské prvky jsou hotové. Hradíte třetí část (dosaženo 60% rozestavěnosti).",
+    icon: "🏠"
+  },
+  {
+    title: "4. Platba - Omítky a instalace (80%)",
+    description: "Dům dostává tvář. Jsou hotové omítky, rozvody a další práce. Hradíte čtvrtou část (dosaženo 80% rozestavěnosti).",
+    icon: "💡"
+  },
+  {
+    title: "5. Platba - Dokončení a finále (100%)",
+    description: "Stavba je kompletně dokončena a připravena. Probíhá finální kontrola a doplatek zbývající části ceny.",
+    icon: "✅"
+  },
+  {
+    title: "Předání stavby",
+    description: "Váš nový domov je připraven. Předáváme vám klíče a veškerou dokumentaci. Vítejte doma!",
+    icon: "🔑"
+  }
+];
+---
+
+<section class="py-20 bg-gray-50 overflow-hidden" id="pruvodce-stavbou">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Průvodce stavbou
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Od první schůzky až po předání klíčů. Podívejte se, jak vypadá naše společná cesta k vašemu novému domovu.
+      </p>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+      <!-- Vertical line -->
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-primary/20 md:-translate-x-1/2 rounded-full"></div>
+
+      <div class="relative space-y-12 md:space-y-0">
+        {steps.map((step, index) => (
+          <div class={`relative md:flex items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+            
+            <!-- Turn point / Dot on the line -->
+            <div class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white shadow-md transform -translate-x-1/2 mt-6 md:mt-0 z-10 transition-transform duration-300 group-hover:scale-150"></div>
+
+            <!-- Spacer for the other side on desktop -->
+            <div class="hidden md:block md:w-1/2"></div>
+            
+            <!-- Content Card -->
+            <div class={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pl-16' : 'md:pr-16'}`}>
+              <div class={`group relative bg-white p-6 rounded-2xl ${index % 2 === 0 ? 'md:mr-[15px]' : 'md:ml-[15px]'} shadow-sm border border-gray-100 hover:shadow-xl hover:border-primary/30 transition-all duration-300 overflow-hidden cursor-default`}>
+                
+                <!-- Header (Always visible) -->
+                <div class="relative z-10 mb-2">
+                  <div class="text-sm text-gray-500 mb-1">
+                    Krok {index + 1}
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                    {step.title}
+                  </h3>
+                </div>
+
+                <!-- Description (Hidden initially, expands on hover) -->
+                <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="text-gray-600 pt-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Decorative gradients -->
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

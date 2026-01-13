@@ -85,7 +85,7 @@ const imagesFolder = path.join(
   process.cwd(),
   "public",
   "images-work",
-  "skyinvest_images",
+  "product_images",
   project.folder,
 );
 let images: string[] = [];
@@ -95,7 +95,7 @@ try {
     const files = fs.readdirSync(imagesFolder);
     images = files
       .filter((file) => /\.(jpg|jpeg|png|JPG|JPEG|PNG)$/i.test(file))
-      .map((file) => `/images-work/skyinvest_images/${project.folder}/${file}`);
+      .map((file) => `/images-work/product_images/${project.folder}/${file}`);
   }
 } catch (error) {
   console.error("Error reading images folder:", error);

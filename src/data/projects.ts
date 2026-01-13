@@ -16,7 +16,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '15. 1. 2024',
     href: '/realizace/rodinny-dum-1',
-    image: '/images-work/skyinvest_images/dum1/IMG_4828-1030x773.jpg'
+    image: '/images-work/product_images/dum1/IMG_4828-1030x773.jpg'
   },
   {
     id: 'rodinny-dum-2',
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '12. 1. 2024',
     href: '/realizace/rodinny-dum-2',
-    image: '/images-work/skyinvest_images/dum2/Obyvaci_pokoj-1030x773.jpg'
+    image: '/images-work/product_images/dum2/Obyvaci_pokoj-1030x773.jpg'
   },
   {
     id: 'rodinny-dum-3',
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '10. 1. 2024',
     href: '/realizace/rodinny-dum-3',
-    image: '/images-work/skyinvest_images/dum3/DSC09965-1030x773.jpg'
+    image: '/images-work/product_images/dum3/DSC09965-1030x773.jpg'
   },
   {
     id: 'rodinny-dum-4',
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '8. 1. 2024',
     href: '/realizace/rodinny-dum-4',
-    image: '/images-work/skyinvest_images/dum4/DSCN1892-1030x773.jpg'
+    image: '/images-work/product_images/dum4/DSCN1892-1030x773.jpg'
   },
   {
     id: 'rodinny-dum-5',
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '5. 1. 2024',
     href: '/realizace/rodinny-dum-5',
-    image: '/images-work/skyinvest_images/dum5/DSCN1880-e1589460887235.jpg'
+    image: '/images-work/product_images/dum5/DSCN1880-e1589460887235.jpg'
   },
   {
     id: 'rodinny-dum-6',
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '3. 1. 2024',
     href: '/realizace/rodinny-dum-6',
-    image: '/images-work/skyinvest_images/dum6/DSCN6557.jpg'
+    image: '/images-work/product_images/dum6/DSCN6557.jpg'
   },
   {
     id: 'bytova-jednotka-1',
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '1. 1. 2024',
     href: '/realizace/bytova-jednotka-1',
-    image: '/images-work/skyinvest_images/byt1/s1200_IMG-3222.jpg'
+    image: '/images-work/product_images/byt1/s1200_IMG-3222.jpg'
   },
   {
     id: 'bytova-jednotka-2',
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '28. 12. 2023',
     href: '/realizace/bytova-jednotka-2',
-    image: '/images-work/skyinvest_images/byt2/s1200_502-10-.jpg'
+    image: '/images-work/product_images/byt2/s1200_502-10-.jpg'
   },
   {
     id: 'bytova-jednotka-3',
@@ -88,6 +88,6 @@ export const projects: Project[] = [
     author: 'Stavební tým',
     date: '25. 12. 2023',
     href: '/realizace/bytova-jednotka-3',
-    image: '/images-work/skyinvest_images/byt3/s1200_DSCN2873.JPG'
+    image: '/images-work/product_images/byt3/s1200_DSCN2873.JPG'
   }
 ];
