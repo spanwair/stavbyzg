@@ -1,10 +1,16 @@
 ---
-import Button from '../ui/Button.astro';
+import Button from "../ui/Button.astro";
 ---
 
 <div class="contact-form-wrapper">
   <h3 class="text-2xl font-semibold mb-6">Kontaktujte nás</h3>
   <form id="contact-form" class="space-y-4">
+    <input
+      type="hidden"
+      name="access_key"
+      value="f4f398a7-a3e8-47ae-b7ff-b6713565ebde"
+    />
+
     <div>
       <label for="name" class="block text-sm font-medium mb-2">
         Jméno a příjmení *
@@ -14,7 +20,7 @@ import Button from '../ui/Button.astro';
         id="name"
         name="name"
         required
-        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background text-black focus:outline-none focus:ring-2 focus:ring-ring transition-all"
         placeholder="Jan Novák"
       />
     </div>
@@ -28,7 +34,7 @@ import Button from '../ui/Button.astro';
         id="email"
         name="email"
         required
-        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background text-black focus:outline-none focus:ring-2 focus:ring-ring transition-all"
         placeholder="jan.novak@email.cz"
       />
     </div>
@@ -41,7 +47,7 @@ import Button from '../ui/Button.astro';
         type="tel"
         id="phone"
         name="phone"
-        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background text-black focus:outline-none focus:ring-2 focus:ring-ring transition-all"
         placeholder="+420 123 456 789"
       />
     </div>
@@ -55,61 +61,83 @@ import Button from '../ui/Button.astro';
         name="message"
         required
         rows="4"
-        class="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-ring transition-all resize-none"
-        placeholder="Popište nám váš projekt..."
-      ></textarea>
+        class="w-full px-4 py-3 rounded-lg border border-border bg-background text-black focus:outline-none focus:ring-2 focus:ring-ring transition-all resize-none"
+        placeholder="Popište nám váš projekt..."></textarea>
     </div>
 
     <Button type="submit" variant="primary" size="lg" class="w-full">
       Odeslat zprávu
     </Button>
-
-    <div id="form-message" class="hidden text-sm mt-4"></div>
   </form>
 </div>
 
+<!-- Toast Notification -->
+<div id="toast-notification" class="toast-notification"></div>
+
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const formMessage = document.getElementById('form-message');
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const toast = document.getElementById("toast-notification") as HTMLElement;
+
+  function showToast(message: string, isSuccess: boolean = true) {
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.className = `toast-notification ${isSuccess ? "toast-success" : "toast-error"} toast-show`;
+
+    setTimeout(() => {
+      toast.classList.remove("toast-show");
+    }, 5000);
+  }
 
   if (form) {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      
-      if (!formMessage) return;
-      
-      // Show loading state
-      const submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.textContent = 'Odesílání...';
-        submitBtn.setAttribute('disabled', 'true');
-      }
 
-      // Simulate form submission (replace with actual API call)
-      setTimeout(() => {
-        formMessage.classList.remove('hidden');
-        formMessage.classList.add('text-green-600');
-        formMessage.textContent = 'Děkujeme! Vaše zpráva byla úspěšně odeslána. Brzy se vám ozveme.';
-        
-        form.reset();
-        
-        if (submitBtn) {
-          submitBtn.textContent = 'Odeslat zprávu';
-          submitBtn.removeAttribute('disabled');
+      const submitBtn = form.querySelector(
+        'button[type="submit"]',
+      ) as HTMLButtonElement;
+      if (!submitBtn) return;
+
+      const formData = new FormData(form);
+      const originalText = submitBtn.textContent;
+
+      submitBtn.textContent = "Odesílání...";
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showToast(
+            "Děkujeme! Vaše zpráva byla úspěšně odeslána. Brzy se vám ozveme.",
+            true,
+          );
+          form.reset();
+        } else {
+          showToast("Chyba: " + (data.message || "Něco se pokazilo."), false);
         }
-
-        // Hide message after 5 seconds
-        setTimeout(() => {
-          formMessage.classList.add('hidden');
-        }, 5000);
-      }, 1000);
+      } catch (error) {
+        showToast("Něco se pokazilo. Zkuste to prosím znovu.", false);
+      } finally {
+        submitBtn.textContent = originalText || "Odeslat zprávu";
+        submitBtn.disabled = false;
+      }
     });
   }
 </script>
 
 <style>
   .contact-form-wrapper {
-    background: linear-gradient(135deg, var(--frosted-blue) 0%, var(--cerulean) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--frosted-blue) 0%,
+      var(--cerulean) 100%
+    );
     border-radius: var(--radius-xl);
     padding: 2rem;
     box-shadow: var(--shadow-lg);
@@ -124,9 +152,45 @@ import Button from '../ui/Button.astro';
     color: var(--honeydew);
   }
 
+  /* Toast Notification Styles */
+  .toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    font-weight: 500;
+    max-width: 400px;
+    transform: translateX(calc(100% + 2rem));
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .toast-notification.toast-show {
+    transform: translateX(0);
+  }
+
+  .toast-notification.toast-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+
+  .toast-notification.toast-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+  }
+
   @media (max-width: 768px) {
     .contact-form-wrapper {
       padding: 1.5rem;
+    }
+
+    .toast-notification {
+      bottom: 1rem;
+      right: 1rem;
+      left: 1rem;
+      max-width: none;
     }
   }
 </style>
